@@ -39,9 +39,11 @@ inoremap <C-n> :nohl<CR>
 
 
 " Quick quit command
-"" noremap <Leader>e :quit<CR>  " Quit current window
+noremap <Leader>q :quit<CR>  " Quit current window
 "" noremap <Leader>E :qa!<CR>   " Quit all windows
 
+" Press ESC to un-highlight search highlighting
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -88,12 +90,11 @@ syntax on
 " Showing line numbers and length
 set number  " show line numbers
 set rnu	    " turn on relative file numbers
-set tw=79   " width of document (used by gd)
+set tw=80   " width of document (used by gd)
 set nowrap  " don't automatically wrap on load
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
-
 
 " easier formatting of paragraphs
 vmap Q gq
@@ -106,9 +107,9 @@ set undolevels=700
 
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set shiftround
 set expandtab
 
