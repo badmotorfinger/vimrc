@@ -3,7 +3,12 @@ autocmd! bufwritepost _vimrc source %
 autocmd! bufwritepost _gvimrc source %
 
 " open NERDTree if no args specified
+" cd ~/.vim/bundle
+" git clone https://github.com/scrooloose/nerdtree.git
 autocmd vimenter * if !argc() | NERDTree | endif
+let NERDTreeShowHidden=0
+map <Leader><C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
@@ -43,7 +48,7 @@ noremap <Leader>q :quit<CR>  " Quit current window
 "" noremap <Leader>E :qa!<CR>   " Quit all windows
 
 " Press ESC to un-highlight search highlighting
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+nnoremap <silent> <Esc><Esc> <Esc>:nohl<CR><Esc>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -210,6 +215,7 @@ set nofoldenable
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 colorscheme wombat256mod
+" colorscheme madeofcode
 
 
 "if has("win32")
@@ -223,6 +229,10 @@ colorscheme wombat256mod
 " Open new lines without going into insert mode
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
+
+" Emmet
+let g:user_emmet_expandabbr_key = '<C-y>'
+let g:use_emmet_complete_tag = 1
 
 if has("gui_running")
   if has("gui_gtk2")
