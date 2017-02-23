@@ -48,7 +48,9 @@ map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 map <Leader>t <esc>:tabnew<CR>
 
-:nnoremap <silent> <F5> :w<CR>:!start cmd /c python "%:p" & pause<CR>
+" :nnoremap <silent> <F5> :w<CR>:!start cmd /c python "%:p" & pause<CR>
+set shell=powershell
+set shellcmdflag=-command
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
