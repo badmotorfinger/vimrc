@@ -59,8 +59,8 @@ vnoremap <Leader>s :sort<CR>
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
 " then press ``>`` several times.
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
+vnoremap < <gv
+vnoremap > >gv
 
 
 " Show whitespace
