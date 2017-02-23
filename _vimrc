@@ -33,20 +33,6 @@ set bs=2     " make backspace behave like normal again
 let mapleader = ","
 
 
-" Bind nohl
-" Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
-
-
-" Quicksave command
-"" noremap <C-Z> :update<CR>
-"" vnoremap <C-Z> <C-C>:update<CR>
-"" inoremap <C-Z> <C-O>:update<CR>
-
-
 " Quick quit command
 noremap <Leader>q :quit<CR>  " Quit current window
 "" noremap <Leader>E :qa!<CR>   " Quit all windows
@@ -54,12 +40,6 @@ noremap <Leader>q :quit<CR>  " Quit current window
 " Press ESC to un-highlight search highlighting
 nnoremap <silent> <Esc><Esc> <Esc>:nohl<CR><Esc>
 
-" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-" Every unnecessary keystroke that can be saved is good for your health :)
-"" map <c-j> <c-w>j
-"" map <c-k> <c-w>k
-"" map <c-l> <c-w>l
-"" map <c-h> <c-w>h
 
 " Visual Studio/Windows key bindings
 " easier moving between tabs
@@ -85,8 +65,6 @@ vnoremap > >gv  " better indentation
 " MUST be inserted BEFORE the colorscheme command
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
-
-
 
 
 " Enable syntax highlighting
@@ -144,44 +122,30 @@ set noswapfile
 call pathogen#infect()
 
 
-" ============================================================================
-" Python IDE Setup
-" ============================================================================
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
-
-" Syntax
-let g:syntastic_haskell_checkers = ['ghc_mod'] " On by default, turn it off for html
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
-let g:syntastic_debug = 0
 
 " Settings for ctrlp
 " cd ~/.vim/bundle
 " git clone https://github.com/kien/ctrlp.vim.git
-let g:ctrlp_max_height = 30
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=*/coverage/*
-
-
-" Settings for python-mode
-" Note: I'm no longer using this. Leave this commented out
-" and uncomment the part about jedi-vim instead
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-"" map <Leader>g :call RopeGotoDefinition()<CR>
-"" let ropevim_enable_shortcuts = 1
-"" let g:pymode_rope_goto_def_newwin = "vnew"
-"" let g:pymode_rope_extended_complete = 1
-"" let g:pymode_breakpoint = 0
-"" let g:pymode_syntax = 1
-"" let g:pymode_syntax_builtin_objs = 0
-"" let g:pymode_syntax_builtin_funcs = 0
-"" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|sql)$',
+  \ }
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
