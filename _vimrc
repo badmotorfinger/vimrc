@@ -207,6 +207,9 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
-    set guifont=Consolas:h12:cANSI
+    "set guifont=Consolas:h12:cANSI
+    "set guifont=PragmataPro:h14:cANSI
+    set guifont=Inconsolata\ for\ Powerline:h16
+    "set guifont=PragmataPro\ for\ Powerline:h16
   endif
 endif
