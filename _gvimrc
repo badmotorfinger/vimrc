@@ -8,4 +8,5 @@ set guioptions-=T
 " wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
 set t_Co=256
 colorscheme wombat256mod
+" colorscheme wombat
 " colorscheme madeofcode
