@@ -10,8 +10,8 @@ $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 # Get my vimrc from GitHub and symlink it to where Vim looks for it
 cd ~\
-cmd /c mklink _vimrc "$currentDir\_vimrc"
-cmd /c mklink _gvimrc "$currentDir\_gvimrc"
+cmd /c mklink /H _vimrc "$currentDir\_vimrc"
+cmd /c mklink /H _gvimrc "$currentDir\_gvimrc"
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
 .\gvim.exe +PlugInstall +qa
