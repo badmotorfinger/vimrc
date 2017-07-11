@@ -6,19 +6,15 @@ choco install vim --limit-output --force -y
 # Install vim-plug
 md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-(New-Object Net.WebClient).DownloadFile(
-  $uri,
-  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-    "~\vimfiles\autoload\plug.vim"
-  )
-)
+(New-Object Net.WebClient).DownloadFile($uri, "~\vimfiles\autoload\plug.vim")
+
 # Get my vimrc from GitHub and symlink it to where Vim looks for it
 cd ~\
-cmd /c mklink /H _vimrc "$currentDir\_vimrc"
-cmd /c mklink /H _gvimrc "$currentDir\_gvimrc"
+cmd /c mklink _vimrc "$currentDir\_vimrc"
+cmd /c mklink _gvimrc "$currentDir\_gvimrc"
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
-gvim +PlugInstall +qa
+.\gvim.exe +PlugInstall +qa
 
 Write-Host "Installing fonts for vim and powerline..." -NoNewLine
 $FONTS = 0x14
@@ -35,12 +31,7 @@ cd \python27\scripts
 pip install powerline-status
 
 $uri = 'https://raw.githubusercontent.com/powerline/powerline/master/powerline/bindings/vim/plugin/powerline.vim'
-(New-Object Net.WebClient).DownloadFile(
-  $uri,
-  $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-    'C:\Program Files (x86)\vim\vim80\plugin\powerline.vim'
-  )
-)
+(New-Object Net.WebClient).DownloadFile($uri, 'C:\Program Files (x86)\vim\vim80\plugin\powerline.vim')
 
 # npm packages for vim syntastic javascript checker
 npm install -g eslint
