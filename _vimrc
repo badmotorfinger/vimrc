@@ -18,12 +18,8 @@ call plug#end()
 autocmd! bufwritepost _vimrc source %
 autocmd! bufwritepost _gvimrc source %
 
-set encoding=utf-8
 
-" open NERDTree if no args specified
-" cd ~/.vim/bundle
-" git clone https://github.com/scrooloose/nerdtree.git
-autocmd vimenter * if !argc() | NERDTree | endif
+" NERDTRee settings
 let NERDTreeShowHidden=0
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -33,7 +29,6 @@ let NERDTreeQuitOnOpen=1
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
-
 set pastetoggle=<F2>
 set clipboard=unnamed
 
