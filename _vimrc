@@ -60,13 +60,13 @@ map <Leader>m <esc>:tabnext<CR>
 map <Leader>t <esc>:tabnew<CR>
 
 " :nnoremap <silent> <F5> :w<CR>:!start cmd /c python "%:p" & pause<CR>
-set shell=powershell.exe\ -NoLogo\ -NoProfile\ -NonInteractive\ -ExecutionPolicy\ RemoteSigned
-set shellcmdflag=\ -Command
-set shellquote=
-set shellxquote=(
-let &shellpipe='| Out-File -Encoding UTF8 %s'
-let &shellredir='| Out-File -Encoding UTF8 %s'
-set noshellslash
+" set shell=powershell.exe\ -NoLogo\ -NoProfile\ -NonInteractive\ -ExecutionPolicy\ RemoteSigned
+" set shellcmdflag=\ -Command
+" set shellquote=
+" set shellxquote=(
+" let &shellpipe='| Out-File -Encoding UTF8 %s'
+" let &shellredir='| Out-File -Encoding UTF8 %s'
+" set noshellslash
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
