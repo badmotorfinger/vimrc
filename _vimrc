@@ -1,3 +1,19 @@
+set nocompatible              " be iMproved, required
+set encoding=utf-8
+
+" Load vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'vim-scripts/wombat256.vim'
+Plug 'PProvost/vim-ps1'
+Plug 'vim-syntastic/syntastic'
+Plug 'yegappan/mru'
+Plug 'ctrlpvim/ctrlp.vim'
+
+call plug#end()
+
+
 " Automatic reloading of .vimrc
 autocmd! bufwritepost _vimrc source %
 autocmd! bufwritepost _gvimrc source %
