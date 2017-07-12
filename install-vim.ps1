@@ -1,6 +1,26 @@
-﻿$currentDir = Split-Path $MyInvocation.MyCommand.Definition
+﻿params(
+    [string] $sourceCodePath = 'C:\dev'
+)
+
+$vimRcRepoPath = ~\vimfiles\symlink-repos\vimrc
+
+# This clones the repo on the same drive as symlinks only work on the same drive
+ri ~\vimfiles -Recurse -Force -ErrorAction SilentlyContinue
+md ~\vimfiles\symlink-repos
+cd ~\vimfiles\symlink-repos
+git clone https://github.com/vincpa/vimrc
+
+# Create a junction to the place where all my other source code lives
+junction "$sourceCodePath\vimrc" .\vimrc\
+
+# Get my vimrc from GitHub and symlink it to where Vim looks for it
+cd ~\
+cmd /c mklink /H _vimrc "$vimRcRepoPath\_vimrc"
+cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
+
 
 Write-Host 'Installing and configuring Vim...' -ForegroundColor Green
+choco uninstall vim --limit-output | Out-Null
 choco install vim --limit-output --force -y
 
 # Install vim-plug
@@ -8,10 +28,6 @@ md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 (New-Object Net.WebClient).DownloadFile($uri, "~\vimfiles\autoload\plug.vim")
 
-# Get my vimrc from GitHub and symlink it to where Vim looks for it
-cd ~\
-cmd /c mklink /H _vimrc "$currentDir\_vimrc"
-cmd /c mklink /H _gvimrc "$currentDir\_gvimrc"
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
 .\gvim.exe +PlugInstall +qa
