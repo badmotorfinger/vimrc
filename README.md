@@ -14,4 +14,4 @@ Powershell installation script (install-vim.ps1) installs vim (via Chocolatey) a
   - wombat256 - https://github.com/vim-scripts/wombat256.vim
   - MRU       - https://github.com/yegappan/mru
   
-  *Due to Powerline not officially supporting Windows, the install script does some magic to get it working*
+  *Due to Powerline not supporting Windows, the install script does some magic to get it working*
