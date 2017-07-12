@@ -165,21 +165,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|sql)$',
   \ }
 
-" Settings for jedi-vim
-" cd ~/.vim/bundle
-" git clone git://github.com/davidhalter/jedi-vim.git
-let g:jedi#usages_command = "<leader>z"
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-
-" Python folding
-" mkdir -p ~/.vim/ftplugin
-" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
-
-
 
 "if has("win32")
 "    set shell=cmd.exe
@@ -193,29 +178,36 @@ set nofoldenable
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
 
+
 " Emmet
 let g:user_emmet_expandabbr_key = '<C-y>'
 let g:use_emmet_complete_tag = 1
+
 
 " EasyMotion
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
+
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
+
 
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
+
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+
 " Powerline
 set laststatus=2
 set rtp+=C:/Python27/Lib/site-packages/powerline/bindings/vim/
+
 
 if has("gui_running")
   if has("gui_gtk2")
