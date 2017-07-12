@@ -1,32 +1,37 @@
-﻿params(
+param(
     [string] $sourceCodePath = 'C:\dev'
 )
 
-$vimRcRepoPath = ~\vimfiles\symlink-repos\vimrc
+$vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
+$vimfiles = "$Env:USERPROFILE\vimfiles"
+
 
 # This clones the repo on the same drive as symlinks only work on the same drive
-ri ~\vimfiles -Recurse -Force -ErrorAction SilentlyContinue
-md ~\vimfiles\symlink-repos
-cd ~\vimfiles\symlink-repos
+ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
+md "$vimfiles\symlink-repos"
+cd "$vimfiles\symlink-repos"
 git clone https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
+Remove-Item "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
 junction "$sourceCodePath\vimrc" .\vimrc\
 
 # Get my vimrc from GitHub and symlink it to where Vim looks for it
 cd ~\
+Remove-Item _vimrc -ErrorAction SilentlyContinue
+Remove-Item _gvimrc -ErrorAction SilentlyContinue
 cmd /c mklink /H _vimrc "$vimRcRepoPath\_vimrc"
 cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
 
 
 Write-Host 'Installing and configuring Vim...' -ForegroundColor Green
-choco uninstall vim --limit-output | Out-Null
+choco uninstall vim --limit-output -y | Out-Null
 choco install vim --limit-output --force -y
 
 # Install vim-plug
 md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-(New-Object Net.WebClient).DownloadFile($uri, "~\vimfiles\autoload\plug.vim")
+(New-Object Net.WebClient).DownloadFile($uri, "$vimfiles\autoload\plug.vim")
 
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
@@ -36,9 +41,9 @@ Write-Host "Installing fonts for vim and powerline..." -NoNewLine
 $FONTS = 0x14
 $objShell = New-Object -ComObject Shell.Application
 $objFolder = $objShell.Namespace($FONTS)
-$objFolder.CopyHere("$currentDir\resources\PragmataPro.ttf")
-$objFolder.CopyHere("$currentDir\resources\Inconsolata for Powerline.otf")
-$objFolder.CopyHere("$currentDir\resources\PragmataPro for Powerline.ttf")
+$objFolder.CopyHere("$vimRcRepoPath\resources\PragmataPro.ttf")
+$objFolder.CopyHere("$vimRcRepoPath\resources\Inconsolata for Powerline.otf")
+$objFolder.CopyHere("$vimRcRepoPath\resources\PragmataPro for Powerline.ttf")
 Write-Host "done."
 
 Write-Host 'Installing powerline for vim...' -ForegroundColor Green
