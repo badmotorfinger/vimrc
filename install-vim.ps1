@@ -1,4 +1,5 @@
 param(
+    # Where my source lives
     [string] $sourceCodePath = 'C:\dev'
 )
 
@@ -6,12 +7,15 @@ $vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
 $vimfiles = "$Env:USERPROFILE\vimfiles"
 $vimInstallPath = 'C:\Program Files (x86)\vim\vim80'
 
-# This clones the repo on the same drive as symlinks only work on the same drive
+# Prepare ~\vimfiles directory
 ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
 md "$vimfiles\symlink-repos"
 cd "$vimfiles\symlink-repos"
+
 # Remove the junction path or else git clone doesn't work
 ri "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Clone this repo on the same drive as ~\vimfiles because symlinks only work on the same drive
 git clone https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
