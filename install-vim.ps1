@@ -10,7 +10,7 @@ $vimInstallPath = 'C:\Program Files (x86)\vim\vim80'
 ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
 md "$vimfiles\symlink-repos"
 cd "$vimfiles\symlink-repos"
-git clone -q https://github.com/vincpa/vimrc
+& 'C:\Program Files\Git\cmd\git.exe' clone -q https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
 Remove-Item "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
