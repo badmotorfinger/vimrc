@@ -15,7 +15,6 @@ ri "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
 git clone https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
-Remove-Item "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
 junction "$sourceCodePath\vimrc" .\vimrc\
 
 # Get my vimrc from GitHub and symlink it to where Vim looks for it
