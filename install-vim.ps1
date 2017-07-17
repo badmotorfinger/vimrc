@@ -32,7 +32,8 @@ if ((Test-Path $vimInstallPath)) {
     choco install vim --limit-output --force -y
 }
 
-
+md "$vimfiles\autoload"
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',  "$vimfiles\autoload\plug.vim")
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
 .\gvim.exe +PlugInstall +qa
