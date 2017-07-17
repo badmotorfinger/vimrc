@@ -4,7 +4,7 @@ param(
 
 $vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
 $vimfiles = "$Env:USERPROFILE\vimfiles"
-
+$vimInstallPath = 'C:\Program Files (x86)\vim\vim80'
 
 # This clones the repo on the same drive as symlinks only work on the same drive
 ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
@@ -25,13 +25,12 @@ cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
 
 
 Write-Host 'Installing and configuring Vim...' -ForegroundColor Green
-choco uninstall vim --limit-output -y | Out-Null
-choco install vim --limit-output --force -y
+if ((Test-Path $vimInstallPath)) {
+    Write-Host 'Vim already installed. Skipped.' -ForegroundColor Magenta
+} else {
+    choco install vim --limit-output --force -y
+}
 
-# Install vim-plug
-md ~\vimfiles\autoload
-$uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-(New-Object Net.WebClient).DownloadFile($uri, "$vimfiles\autoload\plug.vim")
 
 c:
 cd 'C:\Program Files (x86)\vim\vim80'
