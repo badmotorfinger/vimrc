@@ -11,8 +11,7 @@ ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
 md "$vimfiles\symlink-repos"
 cd "$vimfiles\symlink-repos"
 # Remove the junction path or else git clone doesn't work
-ri "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SiletContinue
-#& 'C:\Program Files\Git\cmd\git.exe' clone -q https://github.com/vincpa/vimrc
+ri "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
 git clone https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
