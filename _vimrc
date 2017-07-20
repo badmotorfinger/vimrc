@@ -8,7 +8,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/wombat256.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'vim-syntastic/syntastic'
-Plug 'yegappan/mru'
+Plug 'yegappan/mru', { 'on': 'MRU'}
 Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
