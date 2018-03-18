@@ -64,3 +64,6 @@ npm install -g eslint
 npm install -g eslint-plugin-react
 npm install -g babel-eslint
 npm install -g eslint-config-defaults
+
+# Fuzzy file finder, can be used within Vim
+choco install fzf
