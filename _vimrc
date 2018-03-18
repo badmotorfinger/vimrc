@@ -9,7 +9,7 @@ Plug 'vim-scripts/wombat256.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'vim-syntastic/syntastic'
 Plug 'yegappan/mru', { 'on': 'MRU'}
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
