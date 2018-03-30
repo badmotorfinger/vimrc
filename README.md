@@ -15,3 +15,10 @@ Powershell installation script (install-vim.ps1) installs vim (via Chocolatey) a
   - MRU       - https://github.com/yegappan/mru
   
   *Due to Powerline not supporting Windows, the install script does some magic to get it working*
+
+## vimrc configs
+
+Repo should be placed in %USERPROFILE%\source\github\vimrc so that _vimrc and other config files can by symlinked and kept in source control.
+
+cmd /c mklink /H _vimrc .\source\github\vimrc\_vimrc
+cmd /c mklink /H _gvimrc .\source\github\vimrc\_gvimrc
