@@ -1,7 +1,11 @@
 param(
     # Where my source lives
-    [string] $sourceCodePath = 'C:\dev'
+    [string] $sourceCodePath = ''
 )
+
+if ($sourceCodePath -eq '') {
+  Write-Line 'Execute script passing in source code path'
+}
 
 $vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
 $vimfiles = "$Env:USERPROFILE\vimfiles"
@@ -25,7 +29,7 @@ junction "$sourceCodePath\vimrc" .\vimrc\
 cd ~\
 Remove-Item _vimrc -ErrorAction SilentlyContinue
 Remove-Item _gvimrc -ErrorAction SilentlyContinue
-cmd /c mklink /H _vimrc "$vimRcRepoPath\_vimrc"
+cmd /c mklink /H _vimrc "$vimRcRepoPath\windows\_vimrc"
 cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
 
 

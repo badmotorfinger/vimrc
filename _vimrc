@@ -10,13 +10,15 @@ Plug 'PProvost/vim-ps1'
 Plug 'vim-syntastic/syntastic'
 Plug 'yegappan/mru', { 'on': 'MRU'}
 Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost _vimrc source %
-autocmd! bufwritepost _gvimrc source %
+" autocmd! bufwritepost _gvimrc source %
 
 
 " NERDTRee settings
@@ -30,7 +32,7 @@ let NERDTreeQuitOnOpen=1
 " When you want to paste large blocks of code into vim, press F2 before you
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
 set pastetoggle=<F2>
-set clipboard=unnamed
+" set clipboard=unnamed
 
 
 " Mouse and backspace
@@ -84,6 +86,11 @@ vnoremap > >gv
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
+" Color scheme
+set t_Co=256
+colorscheme wombat256mod
+" colorscheme wombat
+" colorscheme madeofcode
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
@@ -204,20 +211,17 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
-" Powerline
-set laststatus=2
-set rtp+=C:/Python27/Lib/site-packages/powerline/bindings/vim/
+let g:airline_powerline_fonts = 1
 
-
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    "set guifont=Consolas:h12:cANSI
-    "set guifont=PragmataPro:h14:cANSI
-    set guifont=Inconsolata\ for\ Powerline:h16
-    "set guifont=PragmataPro\ for\ Powerline:h16
-  endif
+" if has("gui_running")
+"   set guifont=Inconsolata\ for\ Powerline:h16
+"   if has("gui_gtk2")
+"   elseif has("gui_macvim")
+"     set guifont=Menlo\ Regular:h14
+if has("gui_win32")
+     "set guifont=Consolas:h12:cANSI
+     "set guifont=PragmataPro:h14:cANSI
+     set guifont=Inconsolata\ for\ Powerline:h16
+     "set guifont=PragmataPro\ for\ Powerline:h16
 endif
+
