@@ -11,7 +11,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'yegappan/mru', { 'on': 'MRU'}
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -87,7 +89,6 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 au InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Color scheme
-set t_Co=256
 colorscheme wombat256mod
 " colorscheme wombat
 " colorscheme madeofcode
@@ -210,14 +211,23 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
-
+" airline confil
 let g:airline_powerline_fonts = 1
+
+" lightline config
+set noshowmode
+set laststatus=2
 
 " if has("gui_running")
 "   set guifont=Inconsolata\ for\ Powerline:h16
 "   if has("gui_gtk2")
 "   elseif has("gui_macvim")
 "     set guifont=Menlo\ Regular:h14
+
+if !has('gui_running')
+  set t_Co=256
+endif
+
 if has("gui_win32")
      "set guifont=Consolas:h12:cANSI
      "set guifont=PragmataPro:h14:cANSI
