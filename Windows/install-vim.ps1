@@ -1,15 +1,11 @@
-param(
-    # Where my source lives
-    [string] $sourceCodePath = ''
-)
-
-if ($sourceCodePath -eq '') {
-  Write-Line 'Execute script passing in source code path'
-}
-
 $vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
 $vimfiles = "$Env:USERPROFILE\vimfiles"
-$vimInstallPath = 'C:\Program Files (x86)\vim\vim80'
+$vimInstallPath = 'C:\tools\vim\vim82'
+
+if ((Test-Path $vimInstallPath) -eq $false) {
+  Write "Vim not found in path $vimInstallPath"
+  return;
+}
 
 # Prepare ~\vimfiles directory
 ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
@@ -33,9 +29,9 @@ cmd /c mklink /H _vimrc "$vimRcRepoPath\windows\_vimrc"
 cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
 
 
-Write-Host 'Installing and configuring Vim...' -ForegroundColor Green
+Write 'Installing and configuring Vim...' -ForegroundColor Green
 if ((Test-Path $vimInstallPath)) {
-    Write-Host 'Vim already installed. Skipped.' -ForegroundColor Magenta
+    Write 'Vim already installed. Skipped.' -ForegroundColor Magenta
 } else {
     choco install vim --limit-output --force -y
 }
@@ -43,25 +39,25 @@ if ((Test-Path $vimInstallPath)) {
 md "$vimfiles\autoload"
 (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',  "$vimfiles\autoload\plug.vim")
 c:
-cd 'C:\Program Files (x86)\vim\vim80'
+cd $vimInstallPath
 .\gvim.exe +PlugInstall +qa
 
-Write-Host "Installing fonts for vim and powerline..." -NoNewLine
+Write "Installing Powerline fonts..." -NoNewLine
 $FONTS = 0x14
 $objShell = New-Object -ComObject Shell.Application
 $objFolder = $objShell.Namespace($FONTS)
 $objFolder.CopyHere("$vimRcRepoPath\resources\PragmataPro.ttf")
 $objFolder.CopyHere("$vimRcRepoPath\resources\Inconsolata for Powerline.otf")
 $objFolder.CopyHere("$vimRcRepoPath\resources\PragmataPro for Powerline.ttf")
-Write-Host "done."
+Write "done."
 
-Write-Host 'Installing powerline for vim...' -ForegroundColor Green
-c:
-cd \python27\scripts
-pip install powerline-status
+# Write 'Installing powerline for vim...' -ForegroundColor Green
+# c:
+# cd \python27\scripts
+# pip install powerline-status
 
-$uri = 'https://raw.githubusercontent.com/powerline/powerline/master/powerline/bindings/vim/plugin/powerline.vim'
-(New-Object Net.WebClient).DownloadFile($uri, 'C:\Program Files (x86)\vim\vim80\plugin\powerline.vim')
+# $uri = 'https://raw.githubusercontent.com/powerline/powerline/master/powerline/bindings/vim/plugin/powerline.vim'
+# (New-Object Net.WebClient).DownloadFile($uri, "$vimInstallPath\plugin\powerline.vim")
 
 # npm packages for vim syntastic javascript checker
 npm install -g eslint
