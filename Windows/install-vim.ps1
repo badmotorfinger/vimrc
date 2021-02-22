@@ -1,9 +1,15 @@
-$vimRcRepoPath = "$Env:USERPROFILE\vimfiles\symlink-repos\vimrc"
 $vimfiles = "$Env:USERPROFILE\vimfiles"
+$vimRcRepoPath = "$vimfiles\symlink-repos\vimrc"
 $vimInstallPath = 'C:\tools\vim\vim82'
+$sourceCodePath = 'C:\Users\Vince\source\github-badmotorfinger'
 
 if ((Test-Path $vimInstallPath) -eq $false) {
   Write "Vim not found in path $vimInstallPath"
+  return;
+}
+
+if ((Test-Path $sourceCodePath)-eq $false) {
+  Write "Source code path $sourceCodePath not found."
   return;
 }
 
@@ -12,21 +18,16 @@ ri $vimfiles -Recurse -Force -ErrorAction SilentlyContinue
 md "$vimfiles\symlink-repos"
 cd "$vimfiles\symlink-repos"
 
-# Remove the junction path or else git clone doesn't work
-ri "$sourceCodePath\vimrc" -Recurse -Force -ErrorAction SilentlyContinue
-
-# Clone this repo on the same drive as ~\vimfiles because symlinks only work on the same drive
-git clone https://github.com/vincpa/vimrc
 
 # Create a junction to the place where all my other source code lives
-junction "$sourceCodePath\vimrc" .\vimrc\
+junction vimrc "$sourceCodePath\vimrc"
 
 # Get my vimrc from GitHub and symlink it to where Vim looks for it
 cd ~\
 Remove-Item _vimrc -ErrorAction SilentlyContinue
 Remove-Item _gvimrc -ErrorAction SilentlyContinue
-cmd /c mklink /H _vimrc "$vimRcRepoPath\windows\_vimrc"
-cmd /c mklink /H _gvimrc "$vimRcRepoPath\_gvimrc"
+cmd /c mklink /H _vimrc "$vimRcRepoPath\_vimrc"
+cmd /c mklink /H _gvimrc "$vimRcRepoPath\windows\_gvimrc"
 
 
 Write 'Installing and configuring Vim...' -ForegroundColor Green
