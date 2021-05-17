@@ -14,9 +14,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
-
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost _vimrc source %
@@ -157,7 +157,8 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_w = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-
+let g:syntastic_typescript_checkers = ['tslint']
+autocmd BufNewFile,BufRead *.ts set syntax=typescript
 
 " Settings for ctrlp
 " cd ~/.vim/bundle
