@@ -4,6 +4,11 @@ My _vimrc configuraiton
 
 Powershell installation script (install-vim.ps1) installs vim (via Chocolatey) and [vim-plug](https://github.com/junegunn/vim-plug) which manages my plugins within Vim.
 
+curl https://raw.githubusercontent.com/badmotorfinger/vimrc/master/_vimrc >> _vimrc
+curl https://raw.githubusercontent.com/badmotorfinger/vimrc/master/install-vim.sh >> install-vim.sh
+curl https://raw.githubusercontent.com/badmotorfinger/vimrc/master/plug.vim >> plug.vim
+
+
 ### Plugins installed by vim-plug, listed in _vimrc are
 
   - NERD Tree - https://github.com/scrooloose/nerdtree
